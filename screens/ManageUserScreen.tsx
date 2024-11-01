@@ -14,6 +14,7 @@ import {UserContext} from './UserContext';
 import AddIcon from '../src/assets/Icons/AddIcon';
 import ArrowDown from '../src/assets/Icons/ArrowDown';
 import ArrowUp from '../src/assets/Icons/ArrowUp';
+import ArrowBack from '../src/assets/Icons/ArrowBack';
 
 const ManageUserScreen = ({navigation, route}) => {
   const {users, setUsers} = useContext(UserContext);
@@ -63,6 +64,9 @@ const ManageUserScreen = ({navigation, route}) => {
   return (
     <LinearGradient colors={['#808080', '#FFFFFF']} style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <ArrowBack />
+        </TouchableOpacity>
         <Text style={styles.headerText}>Manage Users</Text>
       </View>
 
@@ -142,11 +146,12 @@ const ManageUserScreen = ({navigation, route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
   },
   header: {
-    marginVertical: 20,
-    alignSelf: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 36,
   },
   headerText: {
     fontSize: 25,
