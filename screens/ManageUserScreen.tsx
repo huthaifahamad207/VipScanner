@@ -64,10 +64,14 @@ const ManageUserScreen = ({navigation, route}) => {
   return (
     <LinearGradient colors={['#808080', '#FFFFFF']} style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{paddingLeft: 12}}>
           <ArrowBack />
         </TouchableOpacity>
         <Text style={styles.headerText}>Manage Users</Text>
+        <View />
+        <View />
       </View>
 
       <View style={styles.collapsibleContainer}>
@@ -163,6 +167,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
+    marginHorizontal: 12,
   },
   addButtonContainer: {
     paddingVertical: 15,
