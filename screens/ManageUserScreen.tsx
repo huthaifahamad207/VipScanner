@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   Alert,
+  Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {UserContext} from './UserContext';
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 36,
+    marginVertical: Platform.OS === 'ios' ? 40 : 36,
   },
   headerText: {
     fontSize: 25,
