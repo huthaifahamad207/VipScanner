@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: Platform.OS === 'ios' ? 40 : 36,
+    marginVertical: Platform.OS === 'ios' ? 50 : 36,
   },
   headerText: {
     fontSize: 25,

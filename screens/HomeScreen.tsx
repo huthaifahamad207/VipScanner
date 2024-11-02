@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   ActivityIndicator,
+  Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    marginVertical: 20,
+    marginVertical: Platform.OS === 'ios' ? 50 : 36,
   },
   headerText: {
     fontSize: 32,
