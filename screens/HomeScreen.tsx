@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 const HomeScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +17,7 @@ const HomeScreen = ({navigation}) => {
     setTimeout(() => {
       setLoading(false);
       navigation.navigate(screen);
-    }, 3000);
+    }, 1000);
   };
 
   const handelScannerPressed = () => {
@@ -29,11 +35,19 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       {loading ? (
-        <Spinner
-          visible={loading}
-          textContent={'Loading...'}
-          textStyle={styles.spinnerTextStyle}
-        />
+        <View
+          style={{
+            alignItems: 'center',
+            bottom: 0,
+            justifyContent: 'center',
+            left: 0,
+            overflow: 'hidden',
+            position: 'absolute',
+            right: 0,
+            top: 0,
+          }}>
+          <ActivityIndicator size="large" color="gray" />
+        </View>
       ) : (
         <>
           <TouchableOpacity
