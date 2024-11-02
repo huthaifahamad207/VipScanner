@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 import {AppState} from 'react-native';
 
 export const UserContext = createContext();
@@ -29,14 +29,14 @@ export const UserProvider = ({children}) => {
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        const stringifiedList = await AsyncStorage.getItem('store');
+        const stringifiedList = await EncryptedStorage.getItem('store');
         if (stringifiedList) {
           const retrievedStore = JSON.parse(stringifiedList);
           setUsers(retrievedStore);
-          console.log('Users loaded from storage');
+          console.log('Users loaded from encrypted storage');
         }
       } catch (error) {
-        console.error('Failed to load users from storage', error);
+        console.error('Failed to load users from encrypted storage', error);
       }
     };
 
@@ -46,10 +46,10 @@ export const UserProvider = ({children}) => {
   useEffect(() => {
     const saveUsers = async () => {
       try {
-        await AsyncStorage.setItem('store', JSON.stringify(users));
-        console.log('Users saved to storage');
+        await EncryptedStorage.setItem('store', JSON.stringify(users));
+        console.log('Users saved to encrypted storage');
       } catch (error) {
-        console.error('Failed to save users to storage', error);
+        console.error('Failed to save users to encrypted storage', error);
       }
     };
 
@@ -60,8 +60,10 @@ export const UserProvider = ({children}) => {
     const handleAppStateChange = nextAppState => {
       if (nextAppState === 'background' || nextAppState === 'inactive') {
         console.log('App going to background or inactive, saving users');
-        AsyncStorage.setItem('store', JSON.stringify(users))
-          .then(() => console.log('Users saved to storage on app state change'))
+        EncryptedStorage.setItem('store', JSON.stringify(users))
+          .then(() =>
+            console.log('Users saved to encrypted storage on app state change'),
+          )
           .catch(error =>
             console.error('Failed to save users on app state change', error),
           );
